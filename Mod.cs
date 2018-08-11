@@ -115,6 +115,15 @@ namespace BiggerBackpack
                     pages[GameMenu.inventoryTab] = new NewInventoryPage(
                         oldInv.xPositionOnScreen, oldInv.yPositionOnScreen, oldInv.width, oldInv.height);
                 }
+                var craftingTab = pages[GameMenu.craftingTab];
+                if (craftingTab.GetType() == typeof(CraftingPage))
+                {
+                    CraftingPage page = (CraftingPage)pages[GameMenu.craftingTab];
+                    if (page.inventory.rows == 3)
+                    {
+                        page.inventory = FixInventory(page.inventory);
+                    }
+                }
             }
             else if (args.NewMenu is MenuWithInventory menuWithInv)
             {
