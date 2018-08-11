@@ -45,45 +45,45 @@ namespace BiggerBackpack
                         {
                             if (name == "Boots")
                             {
-                                if (Game1.player.boots != null)
+                                if (Game1.player.boots.Value != null)
                                 {
                                     b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 10, -1, -1)), Color.White);
-                                    Game1.player.boots.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale);
+                                    Game1.player.boots.Value.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale);
                                 }
                                 else
                                     b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 40, -1, -1)), Color.White);
                             }
                         }
-                        else if (Game1.player.leftRing != null)
+                        else if (Game1.player.leftRing.Value != null)
                         {
                             b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 10, -1, -1)), Color.White);
-                            Game1.player.leftRing.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale);
+                            Game1.player.leftRing.Value.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale);
                         }
                         else
                             b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 41, -1, -1)), Color.White);
                     }
-                    else if (Game1.player.rightRing != null)
+                    else if (Game1.player.rightRing.Value != null)
                     {
                         b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 10, -1, -1)), Color.White);
-                        Game1.player.rightRing.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale);
+                        Game1.player.rightRing.Value.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale);
                     }
                     else
                         b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 41, -1, -1)), Color.White);
                 }
-                else if (Game1.player.hat != null)
+                else if (Game1.player.hat.Value != null)
                 {
                     b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 10, -1, -1)), Color.White);
-                    Game1.player.hat.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale, 1f, 0.866f, false);
+                    Game1.player.hat.Value.drawInMenu(b, new Vector2((float)equipmentIcon.bounds.X, (float)equipmentIcon.bounds.Y), equipmentIcon.scale, 1f, 0.866f, false);
                 }
                 else
                     b.Draw(Game1.menuTexture, equipmentIcon.bounds, new Rectangle?(Game1.getSourceRectForStandardTileSheet(Game1.menuTexture, 42, -1, -1)), Color.White);
             }
             b.Draw(Game1.timeOfDay >= 1900 ? Game1.nightbg : Game1.daybg, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 3 - Game1.tileSize), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 5 * Game1.tileSize - 8)), Color.White);
-            Game1.player.FarmerRenderer.draw(b, new FarmerSprite.AnimationFrame(0, Game1.player.bathingClothes ? 108 : 0, false, false, (AnimatedSprite.endOfAnimationBehavior)null, false), Game1.player.bathingClothes ? 108 : 0, new Rectangle(0, Game1.player.bathingClothes ? 576 : 0, 16, 32), new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 3 - Game1.tileSize / 2), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 6 * Game1.tileSize - Game1.tileSize / 2)), Vector2.Zero, 0.8f, 2, Color.White, 0.0f, 1f, Game1.player);
+            Game1.player.FarmerRenderer.draw(b, new FarmerSprite.AnimationFrame(0, Game1.player.bathingClothes.Value ? 108 : 0, false, false, (AnimatedSprite.endOfAnimationBehavior)null, false), Game1.player.bathingClothes.Value ? 108 : 0, new Rectangle(0, Game1.player.bathingClothes.Value ? 576 : 0, 16, 32), new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 3 - Game1.tileSize / 2), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 6 * Game1.tileSize - Game1.tileSize / 2)), Vector2.Zero, 0.8f, 2, Color.White, 0.0f, 1f, Game1.player);
             if (Game1.timeOfDay >= 1900)
                 Game1.player.FarmerRenderer.draw(b, new FarmerSprite.AnimationFrame(0, 0, false, false, (AnimatedSprite.endOfAnimationBehavior)null, false), 0, new Rectangle(0, 0, 16, 32), new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 3 - Game1.tileSize / 2), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 6 * Game1.tileSize - Game1.tileSize / 2)), Vector2.Zero, 0.8f, 2, Color.DarkBlue * 0.3f, 0.0f, 1f, Game1.player);
-            Utility.drawTextWithShadow(b, Game1.player.name, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 3) - Math.Min((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
-            string text1 = Game1.content.LoadString("Strings\\UI:Inventory_FarmName", (object)Game1.player.farmName);
+            Utility.drawTextWithShadow(b, Game1.player.Name, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 3) - Math.Min((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
+            string text1 = Game1.content.LoadString("Strings\\UI:Inventory_FarmName", (object)Game1.player.farmName.Value);
             Utility.drawTextWithShadow(b, text1, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 8 + Game1.tileSize / 2) - Game1.dialogueFont.MeasureString(text1).X / 2f, (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 5 * Game1.tileSize + Game1.pixelZoom)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
             string text2 = Game1.content.LoadString("Strings\\UI:Inventory_CurrentFunds", (object)Utility.getNumberWithCommas(Game1.player.Money));
             Utility.drawTextWithShadow(b, text2, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 8 + Game1.tileSize / 2) - Game1.dialogueFont.MeasureString(text2).X / 2f, (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 6 * Game1.tileSize)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
@@ -92,18 +92,16 @@ namespace BiggerBackpack
             if (Game1.player.hasPet())
             {
                 string petDisplayName = Game1.player.getPetDisplayName();
-                Utility.drawTextWithShadow(b, petDisplayName, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 5) + Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
-                Utility.drawWithShadow(b, Game1.mouseCursors, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 4) + Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize - Game1.pixelZoom)), new Rectangle(160 + (Game1.player.catPerson ? 0 : 16), 192, 16, 16), Color.White, 0.0f, Vector2.Zero, (float)Game1.pixelZoom, false, -1f, -1, -1, 0.35f);
+                Utility.drawTextWithShadow(b, petDisplayName, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 5) + Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
+                Utility.drawWithShadow(b, Game1.mouseCursors, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 4) + Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize - Game1.pixelZoom)), new Rectangle(160 + (Game1.player.catPerson ? 0 : 16), 192, 16, 16), Color.White, 0.0f, Vector2.Zero, (float)Game1.pixelZoom, false, -1f, -1, -1, 0.35f);
             }
             if (horseName.Length > 0)
             {
-                Utility.drawTextWithShadow(b, horseName, Game1.dialogueFont, new Vector2((float)((double)(this.xPositionOnScreen + Game1.tileSize * 6) + (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.name).X / 2f) + (Game1.player.getPetDisplayName() != null ? (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.getPetDisplayName()).X) : 0.0)), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
-                Utility.drawWithShadow(b, Game1.mouseCursors, new Vector2((float)((double)(this.xPositionOnScreen + Game1.tileSize * 5 + Game1.pixelZoom * 2) + (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.name).X / 2f) + (Game1.player.getPetDisplayName() != null ? (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.getPetDisplayName()).X) : 0.0)), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize - Game1.pixelZoom)), new Rectangle(193, 192, 16, 16), Color.White, 0.0f, Vector2.Zero, (float)Game1.pixelZoom, false, -1f, -1, -1, 0.35f);
+                Utility.drawTextWithShadow(b, horseName, Game1.dialogueFont, new Vector2((float)((double)(this.xPositionOnScreen + Game1.tileSize * 6) + (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f) + (Game1.player.getPetDisplayName() != null ? (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.getPetDisplayName()).X) : 0.0)), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
+                Utility.drawWithShadow(b, Game1.mouseCursors, new Vector2((float)((double)(this.xPositionOnScreen + Game1.tileSize * 5 + Game1.pixelZoom * 2) + (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f) + (Game1.player.getPetDisplayName() != null ? (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.getPetDisplayName()).X) : 0.0)), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize - Game1.pixelZoom)), new Rectangle(193, 192, 16, 16), Color.White, 0.0f, Vector2.Zero, (float)Game1.pixelZoom, false, -1f, -1, -1, 0.35f);
             }
             int positionOnScreen = this.xPositionOnScreen;
             int num = this.width / 3;
-            int tileSize1 = Game1.tileSize;
-            int tileSize2 = Game1.tileSize;
             if (this.organizeButton != null)
                 this.organizeButton.draw(b);
             this.trashCan.draw(b);
