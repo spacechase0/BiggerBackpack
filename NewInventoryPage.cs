@@ -1,7 +1,10 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+using Netcode;
 using StardewValley;
 using StardewValley.Menus;
+using StardewValley.Objects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +28,9 @@ namespace BiggerBackpack
 
         public override void draw(SpriteBatch b)
         {
-            var horseName = Mod.instance.Helper.Reflection.GetField<string>(this, "horseName").GetValue();
+            var horseName = Game1.player.horseName;
             var trashCanLidRotation = Mod.instance.Helper.Reflection.GetField<float>(this, "trashCanLidRotation").GetValue();
-            var heldItem = Mod.instance.Helper.Reflection.GetField<Item>(this, "heldItem").GetValue();
+            var heldItem = Game1.player.CursorSlotItem;
             var hoveredItem = Mod.instance.Helper.Reflection.GetField<Item>(this, "hoveredItem").GetValue();
             var hoverTitle = Mod.instance.Helper.Reflection.GetField<string>(this, "hoverTitle").GetValue();
             var hoverText = Mod.instance.Helper.Reflection.GetField<string>(this, "hoverText").GetValue();
@@ -95,7 +98,7 @@ namespace BiggerBackpack
                 Utility.drawTextWithShadow(b, petDisplayName, Game1.dialogueFont, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 5) + Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
                 Utility.drawWithShadow(b, Game1.mouseCursors, new Vector2((float)(this.xPositionOnScreen + Game1.tileSize * 4) + Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize - Game1.pixelZoom)), new Rectangle(160 + (Game1.player.catPerson ? 0 : 16), 192, 16, 16), Color.White, 0.0f, Vector2.Zero, (float)Game1.pixelZoom, false, -1f, -1, -1, 0.35f);
             }
-            if (horseName.Length > 0)
+            if (!string.IsNullOrWhiteSpace(horseName))
             {
                 Utility.drawTextWithShadow(b, horseName, Game1.dialogueFont, new Vector2((float)((double)(this.xPositionOnScreen + Game1.tileSize * 6) + (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f) + (Game1.player.getPetDisplayName() != null ? (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.getPetDisplayName()).X) : 0.0)), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize + Game1.pixelZoom * 2)), Game1.textColor, 1f, -1f, -1, -1, 1f, 3);
                 Utility.drawWithShadow(b, Game1.mouseCursors, new Vector2((float)((double)(this.xPositionOnScreen + Game1.tileSize * 5 + Game1.pixelZoom * 2) + (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.Name).X / 2f) + (Game1.player.getPetDisplayName() != null ? (double)Math.Max((float)Game1.tileSize, Game1.dialogueFont.MeasureString(Game1.player.getPetDisplayName()).X) : 0.0)), (float)(this.yPositionOnScreen + IClickableMenu.borderWidth + IClickableMenu.spaceToClearTopBorder + 8 * Game1.tileSize - Game1.pixelZoom)), new Rectangle(193, 192, 16, 16), Color.White, 0.0f, Vector2.Zero, (float)Game1.pixelZoom, false, -1f, -1, -1, 0.35f);
