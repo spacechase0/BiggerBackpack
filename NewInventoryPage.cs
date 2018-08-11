@@ -17,8 +17,17 @@ namespace BiggerBackpack
     {
         public NewInventoryPage(int x, int y, int width, int height) : base(x, y, width, height+ Game1.tileSize)
         {
-            inventory.capacity = 48;
-            inventory.rows = 4;
+            inventory = new InventoryMenu(
+                this.xPositionOnScreen + IClickableMenu.spaceToClearSideBorder + IClickableMenu.borderWidth,
+                this.yPositionOnScreen + IClickableMenu.spaceToClearTopBorder + IClickableMenu.borderWidth,
+                playerInventory: inventory.playerInventory,
+                actualInventory: (IList<Item>)null,
+                highlightMethod: inventory.highlightMethod,
+                capacity: 48,
+                rows: 4,
+                horizontalGap: inventory.horizontalGap,
+                verticalGap: inventory.verticalGap,
+                drawSlots: inventory.drawSlots);
 
             foreach ( var icon in equipmentIcons )
             {

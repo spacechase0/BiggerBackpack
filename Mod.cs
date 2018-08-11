@@ -112,20 +112,19 @@ namespace BiggerBackpack
                 var oldInv = pages[GameMenu.inventoryTab];
                 if (oldInv.GetType() == typeof(InventoryPage))
                 {
-                    pages[GameMenu.inventoryTab] = new NewInventoryPage(oldInv.xPositionOnScreen, oldInv.yPositionOnScreen, oldInv.width, oldInv.height);
+                    pages[GameMenu.inventoryTab] = new NewInventoryPage(
+                        oldInv.xPositionOnScreen, oldInv.yPositionOnScreen, oldInv.width, oldInv.height);
                 }
             }
             else if (args.NewMenu is MenuWithInventory menuWithInv)
             {
-                menuWithInv.inventory.capacity = 48;
-                menuWithInv.inventory.rows = 4;
-                menuWithInv.height += 64;
+                menuWithInv.inventory = FixInventory(menuWithInv.inventory);
             }
-            else if ( args.NewMenu is ShopMenu shop )
+            else if (args.NewMenu is ShopMenu shop)
             {
-                shop.inventory = new InventoryMenu(shop.inventory.xPositionOnScreen, shop.inventory.yPositionOnScreen, false, (List<Item>)null, new InventoryMenu.highlightThisItem(shop.highlightItemToSell), 48, 4, 0, 0, true);
+                shop.inventory = FixInventory(shop.inventory);
             }
-            else if ( args.NewMenu is DialogueBox )
+            else if (args.NewMenu is DialogueBox)
             {
                 GameEvents.UpdateTick += watchSelectedResponse;
             }
@@ -140,6 +139,21 @@ namespace BiggerBackpack
                 if (sel != -1)
                     prevSelResponse = sel;
             }
+        }
+
+        private InventoryMenu FixInventory(InventoryMenu source)
+        {
+            var result = new InventoryMenu(
+                    source.xPositionOnScreen, source.yPositionOnScreen,
+                    playerInventory: source.playerInventory,
+                    actualInventory: (List<Item>)null,
+                    highlightMethod: source.highlightMethod,
+                    capacity: 48, rows: 4, horizontalGap: source.horizontalGap, verticalGap: source.verticalGap,
+                    drawSlots: source.drawSlots);
+            result.exitFunction = source.exitFunction;
+            result.onAddItem = source.onAddItem;
+            result.showGrayedOutSlots = source.showGrayedOutSlots;
+            return result;
         }
     }
 }
